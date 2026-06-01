@@ -145,9 +145,10 @@ print(f"📊 Churn Probability: {probability[0]:.2%}")
 
 ---
 
-## 🌐 Streamlit App
+## 🌐 Streamlit App(not published yet)
 
-Launch the interactive dashboard:
+Upcoming Launch the interactive dashboard:
+
 
 ```bash
 streamlit run app.py
