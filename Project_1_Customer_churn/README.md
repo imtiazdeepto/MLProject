@@ -38,6 +38,7 @@ This project implements an end-to-end **binary classification workflow** on the 
 | 🔀 **Feature Alignment** | Combines `StandardScaler` and `OneHotEncoder` within a unified `ColumnTransformer` |
 | 🎯 **Tuned Classifier** | Employs an optimized `RandomForestClassifier` with balanced subsampling weights |
 | 💾 **Single Asset Deploy** | Packs everything into a single `churn_model.pkl` — ready for immediate deployment |
+| 🌐 **Streamlit App** | Interactive web dashboard for real-time churn prediction |
 
 ---
 
@@ -46,8 +47,8 @@ This project implements an end-to-end **binary classification workflow** on the 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/imtiazdeepto/telco-customer-churn.git
-cd telco-customer-churn
+git clone https://github.com/imtiazdeepto/MLProject.git
+cd MLProject/Project_1_Customer_churn
 ```
 
 ### 2️⃣ Environment Setup
@@ -58,13 +59,13 @@ python -m venv venv
 
 # Activate
 source venv/bin/activate      # macOS / Linux
-venv\Scriptsctivate         # Windows
+venv\Scripts\activate       # Windows
 ```
 
 ### 3️⃣ Install Dependencies
 
 ```bash
-pip install pandas numpy scikit-learn imbalanced-learn google-colab streamlit xgboost matplotlib seaborn kagglehub
+pip install pandas numpy scikit-learn imbalanced-learn matplotlib seaborn kagglehub streamlit xgboost
 ```
 
 ---
@@ -75,11 +76,26 @@ pip install pandas numpy scikit-learn imbalanced-learn google-colab streamlit xg
 
 By isolating `SMOTE` only to our training folds within an `imblearn.pipeline.Pipeline`, the model delivers realistic, high-performing metrics on unseen validation data:
 
-* **ROC-AUC Score:** `85.82%` (Excellent class separation & stability)
-* **Test Customer Prediction:** `1 (Churn)`
-* **Confidence/Probability:** `78.32%`
+| Metric | Value |
+|--------|-------|
+| **ROC-AUC Score** | `85.82%` |
+| **Accuracy** | `~80%` |
+| **Recall (Churn)** | `0.66` |
+| **Precision (Churn)** | `0.61` |
+| **F1-Score (Churn)** | `0.64` |
 
 > 💡 **Business Impact:** Given the high ROC-AUC and solid probability scoring, retention teams can confidently target vulnerable accounts with proactive offers (e.g., automated loyalty discounts, contract switches) before they terminate service.
+
+### 🔬 Best Hyperparameters Found
+
+```text
+rfc__class_weight: balanced_subsample
+rfc__max_depth: 10
+rfc__max_features: log2
+rfc__min_samples_leaf: 5
+rfc__min_samples_split: 3
+rfc__n_estimators: 439
+```
 
 ---
 
@@ -129,11 +145,27 @@ print(f"📊 Churn Probability: {probability[0]:.2%}")
 
 ---
 
+## 🌐 Streamlit App
+
+Launch the interactive dashboard:
+
+```bash
+streamlit run app.py
+```
+
+Features:
+- 📝 Input customer details via sidebar
+- 🔮 Real-time churn prediction
+- 📊 Probability gauge visualization
+
+---
+
 ## 📁 Project Structure
 
 ```text
-├── churn Model.ipynb       # Jupyter Notebook containing training and evaluation
-├── churn_model.pkl         # Serialized production pipeline (Preprocessing + Model)
+Project_1_Customer_churn/
+├── churn Model.ipynb       # Jupyter Notebook: EDA, training, evaluation
+├── churn_model.pkl         # Serialized production pipeline (Preprocessing + RF Model)
 ├── app.py                  # Streamlit frontend dashboard application
 └── README.md               # Project documentation
 ```
