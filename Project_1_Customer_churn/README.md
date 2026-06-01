@@ -46,7 +46,7 @@ This project implements an end-to-end **binary classification workflow** on the 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/telco-customer-churn.git
+git clone https://github.com/imtiazdeepto/telco-customer-churn.git
 cd telco-customer-churn
 ```
 
